@@ -1,16 +1,15 @@
 <template>
-    <div>
+    <div class="main-page">
         <AppNavigation />
-        <PageHeading />
-        <Nuxt />
+        <div class="current-page">
+            <Nuxt />
+        </div>
         <AppFooter />
     </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-
-export default Vue.extend({
-    
-});
-</script>
+<style scoped>
+.current-page {
+    min-height: 100vh;
+}
+</style>
