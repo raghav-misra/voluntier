@@ -1,6 +1,6 @@
 <template>
 	<div>
-        <div class="top-bar-hero has-background-dark">
+        <div class="top-bar-hero has-background-light">
             <div class="hero-body">
                 <img class="logo" src="@/assets/logo.png" alt="logo" width="150" height="150" />
                 <div>
@@ -8,7 +8,7 @@
                         VolunTier
                     </h1>
                     <h2 class="subtitle is-4">
-                        Juicy voluntiering in california
+                        voluntiering in california
                     </h2>
                 </div>
             </div>
@@ -41,10 +41,12 @@
                 </div>
             </div>
         </div>
-                <div class="header-before-cards">
+                <div class="header-before-cards card has-background-warning-light">
+                    <div class="text-header-before-cards title is-2 has-text-primary">
                     <h1 class="title is-2 has-text-primary">
                     Start Volunteering and helping your community today!
                     </h1>
+                    </div>
                 </div>
         <div class="section has-text-centered">
             <div class="columns">
@@ -104,7 +106,7 @@
     margin-top:5rem;
 }
 .hero {
-    margin-bottom: 7rem;
+    margin-bottom: 12rem;
     margin-top: 10rem;
 }
 
@@ -134,18 +136,21 @@
 
 .header-before-cards {
     text-align: center;
-    margin-bottom: 7rem;
+    width: 200rem;
+    height:5rem;
+    margin-bottom: 10rem;
 }
+
+
 
 </style>
 
-<script lang="ts">
-import Vue from "vue";
+<script>
 import GoTrue from "gotrue-js";
 import { ToastProgrammatic as Toast } from 'buefy'
-export default Vue.extend({
+export default {
     computed: {
-        auth(): GoTrue { return this.$store.state.auth; }
+        auth() { return this.$store.state.auth; }
     },
     async mounted(){
         //Confirm if there is a hash
@@ -163,5 +168,5 @@ export default Vue.extend({
             }
         }
     }
-});
+};
 </script>

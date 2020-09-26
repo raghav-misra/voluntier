@@ -50,11 +50,27 @@ exports.handler = async(event, context) => {
 
         //Check if It made DB entry
         if (newUser.data.data.createUser._id) {
+            const res = await axios.post(endpoint, {
+                query: `{
+                    getUser(netlifyID: "${claims.sub}") {
+                        firstName
+                        lastName
+                        city
+                        state
+                        hours
+                        _id
+                    }
+                  }
+                  `,
+
+            }, { headers: { "Authorization": `Bearer ${process.env.DB}` } })
+            const user = res.data.data.getUser
             return {
 
                 statusCode: 200,
                 body: JSON.stringify({
                     success: true,
+                    data: user
                 }),
             }
         } else {

@@ -1,3 +1,16 @@
 body {
     font-family: "Red Hat Display", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
+
+/* Page change transition */
+
+.page-enter-active,
+.page-leave-active {
+    transition: opacity .5s
+}
+
+.page-enter,
+.page-leave-active {
+    opacity: 0
+}
