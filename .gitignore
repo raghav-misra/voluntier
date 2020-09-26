@@ -90,4 +90,4 @@ sw.*
 *.swp
 
 # Local Netlify folder
-.netlify
+.netlify/state.json
