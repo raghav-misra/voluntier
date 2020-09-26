@@ -62,7 +62,7 @@ export default {
 
     env: {
         BASE_URL: process.env.NODE_ENV !== "production" ?
-            "http://localhost:8888/api" : "https://voluntier.netlify.app/api",
+            "http://localhost:8888/.netlify/functions" : "https://voluntier.netlify.app/.netlify/functions",
         IDENTITY_URL: "https://voluntier.netlify.app/.netlify/identity",
     }
 }

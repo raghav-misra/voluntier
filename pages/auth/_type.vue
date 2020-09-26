@@ -22,25 +22,42 @@
 			</div>
 		</form>
 
+
 		<form
 			v-if="authType === `login`"
 			@submit.prevent="triggerLogin"
 			class="login-form"
 		>
+			
 			<h1 class="title">Login</h1>
+			
 
 			<div class="container">
-				<b-field label="Email Address">
-					<b-input v-model="email" type="email" />
-				</b-field>
+				<div class="columns is-gapless">
 
-				<b-field label="Password">
-					<b-input v-model="password" type="password" />
-				</b-field>
+					<div class="column">
+						<img src=~assets/loginimage.jpg alt=loginimage>
+					</div>
 
-				<b-button type="is-success" native-type="submit">
-					Login
-				</b-button>
+					<div class="column">
+						<b-field label="Email Address">
+							<b-input v-model="email" type="email" />
+						</b-field>
+
+						<b-field label="Password">
+							<b-input v-model="password" type="password" />
+						</b-field>
+
+						<b-button type="is-success" native-type="submit">
+							Login
+						</b-button>
+					</div>
+					
+
+				</div>
+
+				
+				
 			</div>
 		</form>
 	</div>
@@ -127,4 +144,25 @@ export default {
 </script>
 
 <style scoped>
+
+.section {
+  width:100vw;
+  height:100vh;
+  background-image: url('~assets/loginbackground.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
+}
+
+.login-form .container{
+	margin-top: 10rem;
+	width: 300px;
+}
+
+.login-form .container .columns {
+	
+}
+
+
 </style>

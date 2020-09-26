@@ -1,10 +1,14 @@
 const axios = require("axios")
-exports.handler = async(event, context) => {
+exports.handler = async (event, context, callback) => {
     console.log('Create User Called')
-        // Reading the context.clientContext will give us the current user
+    if (event.httpMethod !== "POST") {
+        return { statusCode: 405, body: "Method Not Allowed" };
+    }
+    // Reading the context.clientContext will give us the current user
     const endpoint = "https://graphql.fauna.com/graphql"
     const claims = context.clientContext && context.clientContext.user
-    const req = event.body
+    console.log(event)
+    const req = JSON.parse(event.body);
     console.log('user claims', claims)
 
 
@@ -27,7 +31,7 @@ exports.handler = async(event, context) => {
           `,
 
     }, { headers: { "Authorization": `Bearer ${process.env.DB}` } })
-
+    console.log(req)
     if (res.data.data.getUser == null && req !== undefined) {
         //Create user entry in DB
         let newUser = await axios.post(endpoint, {
@@ -46,7 +50,7 @@ exports.handler = async(event, context) => {
             }`,
 
         }, { headers: { "Authorization": `Bearer ${process.env.DB}` } })
-
+        console.log(newUser.data)
 
         //Check if It made DB entry
         if (newUser.data.data.createUser._id) {
@@ -65,23 +69,23 @@ exports.handler = async(event, context) => {
 
             }, { headers: { "Authorization": `Bearer ${process.env.DB}` } })
             const user = res.data.data.getUser
-            return {
+            return callback(null, {
 
                 statusCode: 200,
                 body: JSON.stringify({
                     success: true,
                     data: user
                 }),
-            }
+            })
         } else {
-            return {
+            return callback(null, {
 
                 statusCode: 200,
                 body: JSON.stringify({
                     success: false,
                     error: "Unable to sign you up, please try again!"
                 }),
-            }
+            })
         }
 
 

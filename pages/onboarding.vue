@@ -81,16 +81,22 @@ export default {
             this.answers[this.questions[this.currentQuestion].name] = answer;
         },
         async submitAnswers() {
+            console.log(this.answers)
             try {
                 // Update data:
-                const userData = await this.$axios(`${process.env.BASE_URL}/create-user`, {
-                    method: "POST",
+                const userData = await this.$axios({
+                    method: "post",
+                    url: `${process.env.BASE_URL}/create-user/`,
+                    data: this.answers,
                     headers: {
-                        Authorization: `Bearer ${this.$store.state.userIdentity.token.access_token}`,
-                        "Content-Type": "application/json"
-                    },
-                    data: this.answers
+                        "Content-Type": "application/json",
+                        Authorization: 
+                            `Bearer ${this.$store.state.userIdentity.token.access_token}`,
+                        "X-POG-DATA": JSON.stringify(this.answers)
+                    }
                 });
+
+                console.log(userData)
 
                 // Save to DB:
                 this.$store.commit("SET_USER_DATA", userData);
