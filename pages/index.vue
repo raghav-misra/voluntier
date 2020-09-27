@@ -67,7 +67,7 @@
 						<h1 class="title">Recommendations</h1>
 						<br />
 						<p>
-							Find shifts based on your personal interests and acheivements
+							Find shifts based on your interests and acheivements
 						</p>
 					</div>
 				</div>
@@ -77,7 +77,7 @@
 						<h2 class="subtitle">Find shifts</h2>
 						<h1 class="title">Closest to you</h1>
 						<br />
-						<p>Use your location to find the perfect shifts near you</p>
+						<p>Find the perfect shifts in your city</p>
 					</div>
 				</div>
 
@@ -86,7 +86,7 @@
 						<h2 class="subtitle">Interactive</h2>
 						<h1 class="title">Leaderboard</h1>
 						<br />
-						<p>See where you stand in your city and state</p>
+						<p>Your standing in your city and state</p>
 					</div>
 				</div>
 			</div>
@@ -98,26 +98,26 @@
 						<h1 class="title">Statistics</h1>
 						<br />
 						<p>
-							Receive detailed statistics 
+							Receive detailed statistics on past shifts.
 						</p>
 					</div>
 				</div>
 
 				<div class="level-item">
 					<div>
-						<h2 class="subtitle">Find shifts</h2>
-						<h1 class="title">Closest to you</h1>
+						<h2 class="subtitle">Unlock</h2>
+						<h1 class="title">Milestones</h1>
 						<br />
-						<p>Use your location to find the perfect shifts</p>
+						<p>Unlock milestones after volunteering.</p>
 					</div>
 				</div>
 
 				<div class="level-item">
 					<div>
-						<h2 class="subtitle">Interactive</h2>
-						<h1 class="title">Leaderboard</h1>
+						<h2 class="subtitle">Detailed</h2>
+						<h1 class="title">Calendar</h1>
 						<br />
-						<p>See where you stand in your city and state.</p>
+						<p class>Track your upcoming shifts in a calendar.</p>
 					</div>
 				</div>
 			</div>
@@ -238,6 +238,10 @@
 .benefit-cards > .level-item h2 {
 	line-height: 2rem;
 	margin-bottom: 1rem;
+}
+
+.benefit-cards > .level-item p {
+	font-size: 1.25rem !important;
 }
 
 .benefit-cards * {

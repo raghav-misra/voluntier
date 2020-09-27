@@ -27,7 +27,7 @@
 
                     <!-- Finish -->
                     <b-button 
-                        type="is-success is-light  is-medium" 
+                        type="is-success is-light is-medium" 
                         v-if="currentQuestion === (questions.length - 1)"
                         @click="submitAnswers()">
                         Save Profile
@@ -35,7 +35,7 @@
 
                     <!-- Go back -->
                     <b-button 
-                        type="is-info is-light  is-medium" 
+                        type="is-info is-light is-medium" 
                         v-if="currentQuestion > 0"
                         @click="currentQuestion--">
                         Last Question

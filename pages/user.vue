@@ -26,7 +26,7 @@
 			<div class="event-container">
 				<section
 					class="shift-card"
-					v-for="(shift, i) in shifts"
+					v-for="(shift, i) in userData.shifts"
 					:key="`shift-${i}`"
 				>
 					<h1 class="title">{{ shift.title }}</h1>
@@ -48,25 +48,15 @@
 					<section class="shift-card">
 						<h2 class="subtitle">Hours Worked</h2>
 						<br />
-						<h1 class="title">5</h1>
+						<h1 class="title">{{ userData.hoursWorked }}</h1>
 					</section>
 					<section class="shift-card">
 						<h2 class="subtitle">Shifts Worked</h2>
 						<br />
-						<h1 class="title">68</h1>
+						<h1 class="title">{{ userData.shiftsWorked }}</h1>
 					</section>
 				</div>
 				<div class="level-item">
-					<section class="shift-card">
-						<h2 class="subtitle">Hours Worked</h2>
-						<br />
-						<h1 class="title">5</h1>
-					</section>
-					<section class="shift-card">
-						<h2 class="subtitle">Shifts Worked</h2>
-						<br />
-						<h1 class="title">68</h1>
-					</section>
 				</div>
 			</div>
 		</section>
@@ -87,28 +77,7 @@ export default {
 	},
 	data: () => {
 		return {
-			shifts: [
-				{
-					title: "Delete Fortnite",
-					starts: "1601166383",
-					ends: "1601126383",
-				},
-				{
-					title: "Delete Fortnite",
-					starts: "1601166383",
-					ends: "1601126383",
-				},
-				{
-					title: "Delete Fortnite",
-					starts: "1601166383",
-					ends: "1601126383",
-				},
-				{
-					title: "Delete Fortnite",
-					starts: "1601166383",
-					ends: "1601126383",
-				},
-			],
+		
 		};
 	},
 };
