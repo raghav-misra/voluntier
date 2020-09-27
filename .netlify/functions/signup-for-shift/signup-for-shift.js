@@ -1,5 +1,5 @@
 const axios = require("axios")
-exports.handler = async(event, context, callback) => {
+exports.handler = async (event, context, callback) => {
     console.log('Create User Called')
     if (event.httpMethod !== "POST") {
         return { statusCode: 405, body: "Method Not Allowed" };
@@ -38,9 +38,9 @@ exports.handler = async(event, context, callback) => {
 
     }, { headers: { "Authorization": `Bearer ${process.env.DB}` } })
     console.log(req)
-    if (res.data.data.getUser == null && req !== undefined) {
+    if (res.data.data.getUser == null && typeof req.id == "string") {
         //Create user entry in DB
-        let newUser = await axios.post(endpoint, {
+        let shiftRequested = await axios.post(endpoint, {
             query: `mutation{
               createUser(data:{
                 netlifyID:"${claims.sub}" 

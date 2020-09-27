@@ -61,7 +61,7 @@
 			<div class="columns">
 				<div class="column">
 					<h1 class="title" id="myStats">My Stats</h1>
-					<br>
+					<br />
 					<section class="shift-card fullWidth">
 						<h2 class="subtitle">Hours Worked</h2>
 						<br />

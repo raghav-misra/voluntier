@@ -10,9 +10,7 @@
 			</b-navbar-item>
 		</template>
 		<template slot="start">
-			<b-navbar-item tag="nuxt-link" to="/">
-				Home
-			</b-navbar-item>
+			<b-navbar-item tag="nuxt-link" to="/"> Home </b-navbar-item>
 			<b-navbar-item tag="nuxt-link" to="/user">
 				Dashboard
 			</b-navbar-item>
@@ -40,7 +38,7 @@
 							<strong>Sign up</strong>
 						</nuxt-link>
 						<nuxt-link to="/auth/login" class="button is-light">
-							Login 
+							Login
 						</nuxt-link>
 					</template>
 				</div>
@@ -54,14 +52,16 @@ import Vue from "vue";
 
 export default Vue.extend({
 	computed: {
-		loggedIn() { return !!this.$store.state.userIdentity; }
+		loggedIn() {
+			return !!this.$store.state.userIdentity;
+		},
 	},
 	methods: {
 		logout() {
 			this.$store.commit("LOGOUT");
 			this.$router.push("/auth/signup");
-		}
-	}
+		},
+	},
 });
 </script>
 

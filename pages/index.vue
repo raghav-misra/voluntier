@@ -36,7 +36,7 @@
 						<h3 class="title has-text-primary">
 							Welcome to VolunTier!
 						</h3>
-						
+
 						<p
 							style="
 								margin-left: 1rem;
@@ -46,14 +46,14 @@
 						>
 							VolunTier allows Organizers to post upcoming
 							volunteering shifts for their organizations.
-							Volunteers can view these upcoming shifts, and
-							get personalized reccomendations for where to
-							volunteer next. In addition, volunteers can find
-							shifts near their location, track their shifts
-							on a calender, view detailed statistics of their
-							past volunteering activity unlock milestones as
-							they progress, compete with other volunteers on
-							an interactive leaderboard, and much more.
+							Volunteers can view these upcoming shifts, and get
+							personalized reccomendations for where to volunteer
+							next. In addition, volunteers can find shifts near
+							their location, track their shifts on a calender,
+							view detailed statistics of their past volunteering
+							activity unlock milestones as they progress, compete
+							with other volunteers on an interactive leaderboard,
+							and much more.
 						</p>
 					</div>
 				</div>
@@ -166,24 +166,23 @@
 				</div>
 			</div>
 		</div>
-		<br>
+		<br />
 		<section class="container">
 			<h1 class="title is-1 has-text-primary has-text-light">
 				Represent an organization?
 			</h1>
 			<div class="has-text-centered">
-					<h2 class="title has-text-light use-our-platform">
+				<h2 class="title has-text-light use-our-platform">
 					Use our platform to manage volunteers intuitively.
 				</h2>
 				<div class="columns organization-cards">
 					<div class="card column">
 						<div class="card-content">
 							<p class="title">
-								<i class="bx bx-world"></i> 
+								<i class="bx bx-world"></i>
 							</p>
 							<p class="subtitle">
-								 Quickly find and
-								promote shifts
+								Quickly find and promote shifts
 							</p>
 						</div>
 					</div>
@@ -191,10 +190,10 @@
 					<div class="card column">
 						<div class="card-content">
 							<p class="title">
-								<i class="bx bx-trophy"></i> 
+								<i class="bx bx-trophy"></i>
 							</p>
 							<p class="subtitle">
-								 Motivate your volunteers out of the box
+								Motivate your volunteers out of the box
 							</p>
 						</div>
 					</div>
@@ -202,10 +201,11 @@
 					<div class="card column">
 						<div class="card-content">
 							<p class="title">
-								<i class="bx bx-data"></i> 
+								<i class="bx bx-data"></i>
 							</p>
 							<p class="subtitle">
-								Let us handle the tedious tasks like taking attendence, loging times, and managing shifts. 
+								Let us handle the tedious tasks like taking
+								attendence, loging times, and managing shifts.
 							</p>
 						</div>
 					</div>
@@ -216,33 +216,29 @@
 								<i class="bx bx-star"></i>
 							</p>
 							<p class="subtitle">
-								Use a platform that volunteers will love and engage with!
+								Use a platform that volunteers will love and
+								engage with!
 							</p>
 						</div>
 					</div>
-
-					
 				</div>
 			</div>
 		</section>
 		<section class="hero is-medium is-primary is-bold">
 			<div class="hero-body">
 				<div class="container">
-					<h1 class="title">
-						What are you waiting for?
-					</h1>
+					<h1 class="title">What are you waiting for?</h1>
 					<h2 class="subtitle">
-						Sign up for the best hub for both nonprofit organizations and volunteers!
+						Sign up for the best hub for both nonprofit
+						organizations and volunteers!
 					</h2>
 					<router-link to="/auth/signup">
-					<b-button type="is-info">
-						Get Started
-					</b-button>
+						<b-button type="is-info"> Get Started </b-button>
 					</router-link>
 				</div>
 			</div>
 		</section>
-		</div>
+	</div>
 </template>
 
 <style scoped>
@@ -302,8 +298,8 @@
 	width: 400px;
 	margin: 1%;
 }
-.level .card{
-	display:inline-block;
+.level .card {
+	display: inline-block;
 }
 .cover-image {
 	display: block;

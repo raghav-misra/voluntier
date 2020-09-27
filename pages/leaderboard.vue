@@ -7,10 +7,17 @@
 		</div>
 		<section class="container">
 			<div class="chart">
-        <h1 style="font-size: 50px" class="title leaderboard-header">Top 10 Volunteers in {{userData.state.toUpperCase()}}</h1>
-				<column-chart 
-          :data="[['2nd place', 100], ['First Place', 200], ['ha nub got third', 50]]">
-        </column-chart>
+				<h1 style="font-size: 50px" class="title leaderboard-header">
+					Top 10 Volunteers in {{ userData.state.toUpperCase() }}
+				</h1>
+				<column-chart
+					:data="[
+						['2nd place', 100],
+						['First Place', 200],
+						['ha nub got third', 50],
+					]"
+				>
+				</column-chart>
 			</div>
 			<div>
 				<div v-if="loaded" class="center examplex">
@@ -34,8 +41,11 @@
 					</vs-table>
 				</div>
 				<div v-if="!loaded">
-					<b-skeleton width="80%"  height="50%" :animated="true"></b-skeleton>
-					
+					<b-skeleton
+						width="80%"
+						height="50%"
+						:animated="true"
+					></b-skeleton>
 				</div>
 			</div>
 		</section>
@@ -48,36 +58,41 @@
 <script>
 export default {
 	middleware: "auth",
-	computed:{
-		 userData() { return this.$store.state.userData; }
+	computed: {
+		userData() {
+			return this.$store.state.userData;
+		},
 	},
 	data() {
 		return {
-			loaded:false,
+			loaded: false,
 			users: [],
 		};
 	},
 	async created() {
-		const res = await this.$axios(`${process.env.BASE_URL}/get-user-by-state`, {
-                method: "POST",
-                headers: {
-                    authorization: `Bearer ${this.$store.state.userIdentity.token.access_token}`
-                },
-                data: JSON.stringify({ state: this.userData.state.toLowerCase() })
-			});
-		console.log("this be data")
-		console.log(res.data)
-		let users = res.data.data.sort(function(a,b){
-                        if(parseInt(a.hoursWorked) > parseInt(b.hoursWorked)) return -1;
-                        if(parseInt(a.hoursWorked) < parseInt(b.hoursWorked)) return 1;
-                        return 0;
-					});
-		this.users = users.slice(0,10)
-		this.loaded = true
-	}
+		const res = await this.$axios(
+			`${process.env.BASE_URL}/get-user-by-state`,
+			{
+				method: "POST",
+				headers: {
+					authorization: `Bearer ${this.$store.state.userIdentity.token.access_token}`,
+				},
+				data: JSON.stringify({
+					state: this.userData.state.toLowerCase(),
+				}),
+			}
+		);
+		console.log("this be data");
+		console.log(res.data);
+		let users = res.data.data.sort(function (a, b) {
+			if (parseInt(a.hoursWorked) > parseInt(b.hoursWorked)) return -1;
+			if (parseInt(a.hoursWorked) < parseInt(b.hoursWorked)) return 1;
+			return 0;
+		});
+		this.users = users.slice(0, 10);
+		this.loaded = true;
+	},
 };
-
-
 </script>
 
 <style scoped>
