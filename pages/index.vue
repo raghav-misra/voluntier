@@ -67,7 +67,7 @@
 						<h1 class="title">Recommendations</h1>
 						<br />
 						<p>
-							Find shifts based on your interests and acheivements
+							Find shifts based on your personal interests and acheivements
 						</p>
 					</div>
 				</div>
@@ -77,7 +77,7 @@
 						<h2 class="subtitle">Find shifts</h2>
 						<h1 class="title">Closest to you</h1>
 						<br />
-						<p>Use your location to find the perfect shifts</p>
+						<p>Use your location to find the perfect shifts near you</p>
 					</div>
 				</div>
 
@@ -86,7 +86,7 @@
 						<h2 class="subtitle">Interactive</h2>
 						<h1 class="title">Leaderboard</h1>
 						<br />
-						<p>See where you stand in your city and state.</p>
+						<p>See where you stand in your city and state</p>
 					</div>
 				</div>
 			</div>
@@ -94,11 +94,11 @@
 			<div class="level benefit-cards">
 				<div class="level-item">
 					<div>
-						<h2 class="subtitle">Personalized</h2>
-						<h1 class="title">Recommendations</h1>
+						<h2 class="subtitle">Detailed</h2>
+						<h1 class="title">Statistics</h1>
 						<br />
 						<p>
-							Find shifts based on your interests and acheivements
+							Receive detailed statistics 
 						</p>
 					</div>
 				</div>

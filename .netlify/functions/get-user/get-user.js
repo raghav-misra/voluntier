@@ -4,7 +4,6 @@ exports.handler = async(event, context) => {
         // Reading the context.clientContext will give us the current user
     const endpoint = "https://graphql.fauna.com/graphql"
     const claims = context.clientContext && context.clientContext.user
-    const req = event.body
     console.log('user claims', claims)
 
 
@@ -36,7 +35,7 @@ exports.handler = async(event, context) => {
 
     if (user == null) {
         return {
-            statusCode: 200,
+            statusCode: 500,
             body: JSON.stringify({
                 success: false,
 
@@ -51,8 +50,4 @@ exports.handler = async(event, context) => {
             })
         }
     }
-
-
-
-
 }
