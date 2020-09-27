@@ -1,22 +1,63 @@
 <template>
     <div class="org-page">
-        <!-- <div v-if="hasOrganizations" class="section container">
-            <div v-for="(org, i) in organizations" :key="i">
-                <h1 class="title">{{ org.name }}</h1>
+        <div class="no-flex hero is-info">
+            <div class="hero-body">
+                <h1 class="subtitle is-2">Your Organizations</h1> 
             </div>
-        </div> -->
+        </div>
 
-        <div class="section container">
-            <div class="org-card level" :title="testOrg.desc">
-                <h1 class="title level-left" v-text="testOrg.name"></h1>
+        <div v-if="hasOrganizations" class="section container">
+            <div 
+                v-for="(org, i) in organizations" :key="i" 
+                class="org-card level"
+            >
+                <div class="level-left level-item">
+                    <div>
+                        <h1 class="title" style="margin-bottom: 1.25rem;" v-text="org.name"></h1>
+                        <h2 class="subtitle" v-text="org.desc"></h2>
+                    </div>
+                </div>
 
-                <div class="edit-buttons">
-                    <nuxt-link class='bx bxs-edit subtitle is-3' :to="`/org/edit/${testOrg.id}`">
-                    </nuxt-link>
-                    <a class='bx bxs-trash subtitle is-3' @click="deleteOrg">
-                    </a>
+                <div class="level-right">
+                    <div>
+                        <nuxt-link 
+                            title="Edit" 
+                            class='level-item bx bxs-edit subtitle is-4' 
+                            :to="`/org/edit/${org._id}`"
+                        ></nuxt-link>
+                        <a
+                            title="Delete" 
+                            class='bx bxs-trash subtitle is-4' 
+                            @click="deleteOrg"
+                        >
+                        </a>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <div class="section">
+            <div class="org-card level">
+                <div class="level-left level-item">
+                    <div>
+                        <h1 class="title" style="margin-bottom: 1.25rem;" v-text="testOrg.name"></h1>
+                        <h2 class="subtitle" v-text="testOrg.desc"></h2>
+                    </div>
+                </div>
+
+                <div class="level-right">
+                    <div>
+                        <nuxt-link title="Edit" class='level-item bx bxs-edit subtitle is-4' :to="`/org/edit/${testOrg._id}`">
+                        </nuxt-link>
+                        <a title="Delete" class='bx bxs-trash subtitle is-4' @click="deleteOrg">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+           <div class="has-text-centered">
+                <b-button type="is-primary is-large">Create an organization</b-button>
+           </div>
         </div>
     </div>
 </template>
@@ -57,16 +98,22 @@ export default {
     flex-direction: column;
 }
 
-.org-page > div {
+.org-page > div:not(.no-flex) {
     flex: 1;
 }
 
 .org-card {
     background: #363636;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
+    margin: 1rem 2rem;
+    border-radius: 20px;
 }
 
-.org-card *:not(a) {
-    color: white !important;
+.org-card * {
+    color: white;
+}
+
+.org-card a:hover {
+    color: cornflowerblue;
 }
 </style>
