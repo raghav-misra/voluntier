@@ -1,7 +1,7 @@
 const axios = require("axios")
-exports.handler = async (event, context) => {
+exports.handler = async(event, context) => {
     console.log('Get User Called')
-    // Reading the context.clientContext will give us the current user
+        // Reading the context.clientContext will give us the current user
     const endpoint = "https://graphql.fauna.com/graphql"
     console.log(event, context);
     const claims = context.clientContext && context.clientContext.user
@@ -35,6 +35,7 @@ exports.handler = async (event, context) => {
                        starts
                        ends
                        desc
+                       _id
                     }
                 }
                 _id

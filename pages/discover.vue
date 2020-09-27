@@ -54,39 +54,69 @@
 				aria-modal
 				aria-role="dialog"
 			>
-				<div class="hero is-info">
+				<div class="hero is-dark">
 					<div class="hero-body">
-						<h1 class="title">
+						<small class="has-text-success">Viewing Shift:</small>
+
+						<h1 class="title has-text-info">
 							{{ modalData.title }}
 						</h1>
+						
 						<h2 class="subtitle">
-							{{ modalData.organization.name }} -
-							{{
-								moment
-									.unix(modalData.starts)
-									.format("MMMM Do YYYY")
-							}},
-							{{ moment.unix(modalData.starts).format("hh:mm") }}
-							{{ moment.unix(modalData.ends).format("hh:mm") }}
+							from {{ modalData.organization.name }}
+						</h2>	
+
+						<h2 class="subtitle">
+							starts on <b>
+								{{moment.unix(modalData.starts).format("MMM Do YYYY")}}
+							</b>, from: 
+							<b>{{ moment.unix(modalData.starts).format("hh:mm") }}</b> to
+							<b>{{ moment.unix(modalData.ends).format("hh:mm") }}</b>
 						</h2>
-						<p>
-							{{ modalData.desc }}
-						</p>
-						<br />
-						<p>
-							Slots Remaining:
-							{{ modalData.signedUp.data.length }}/{{
-								modalData.max
-							}}
-						</p>
-						<b-button
-							@click="signUp"
-							type="is-primary"
-							v-if="
-								modalData.signedUp.data.length < modalData.max
-							"
-							>Sign Up</b-button
+
+						<hr>
+
+						<h2 class="title is-4 no-ttl-margin">Shift Description:</h2>
+						<p>{{ modalData.desc }}</p>
+
+						<br>
+
+						<h2 class="title is-4 no-ttl-margin">Recommended Qualifications:</h2>
+						<p>{{ modalData.qualifications }}</p>
+
+						<hr />
+
+						<!-- Slots open, allow signup -->
+						<div 
+							class="field has-addons" 
+							v-if="shiftSpaceAvailable && !isSignedUpForShift"
 						>
+							<p class="control">
+								<b-button @click="signUp" type="is-success">
+									Signup for this shift.
+								</b-button>
+							</p>
+							<p class="control">
+								<b-button @click="signUp" type="is-info">
+									{{ modalData.signedUp.data.length }} / 
+									{{ modalData.max }}
+								</b-button>
+							</p>
+						</div>
+
+						<!-- Already signed up, show cancel -->
+						<div class="field" v-else-if="isSignedUpForShift">
+							<b-button @click="cancelShift" type="is-danger">
+								Cancel shift.
+							</b-button>
+						</div>
+
+						<!-- Shift is full -->
+						<div class="field" v-else-if="is-warning" disabled>
+							<b-button type="is-danger">
+								This shift is full.
+							</b-button>
+						</div>
 					</div>
 				</div>
 			</b-modal>
@@ -128,6 +158,12 @@ export default {
 				? this.shiftsByCity
 				: this.shiftsByState;
 		},
+		shiftSpaceAvailable() {
+			return this.modalData.signedUp.data.length < this.modalData.max;
+		},
+		isSignedUpForShift() {
+			return this.modalData.signedUp.data.map(d => d._id).includes(this.userData._id);
+		}
 	},
 	async created() {
 		this.cityCoords = { lat: this.userData.lat, lng: this.userData.lng };
@@ -182,7 +218,35 @@ export default {
 			} else {
 				Toast.open({
 					type: "is-danger",
-					message: `An Error Has Occurred.`,
+					message: `An Error Has Occurred. ${res.data.error}`,
+				});
+			}
+		},
+		async cancelShift() {
+			console.log(this.modalData);
+			const res = await this.$axios(
+				`${process.env.BASE_URL}/cancel-a-shift`,
+				{
+					method: "POST",
+					headers: {
+						authorization: `Bearer ${this.$store.state.userIdentity.token.access_token}`,
+					},
+					data: JSON.stringify({
+						id: this.modalData._id,
+					}),
+				}
+			);
+			console.log(res.data);
+			if (res.data.success) {
+				Toast.open({
+					type: "is-success",
+					message: `You have canceled your slot for ${this.modalData.title}`,
+				});
+				this.$router.push("/user");
+			} else {
+				Toast.open({
+					type: "is-danger",
+					message: `An Error Has Occurred. ${res.data.error}`,
 				});
 			}
 		},
@@ -214,7 +278,7 @@ export default {
 	align-items: stretch;
 }
 
-.root-container * {
+.root-container *:not(button):not([class*="has-text-"]) {
 	color: white !important;
 }
 
@@ -244,5 +308,9 @@ export default {
 
 .discover-page .radio:hover .control-label {
 	color: white !important;
+}
+
+.no-ttl-margin {
+	margin-bottom: 0.5rem !important;
 }
 </style>

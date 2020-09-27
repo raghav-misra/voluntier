@@ -1,5 +1,5 @@
 const axios = require("axios")
-exports.handler = async (event, context, callback) => {
+exports.handler = async(event, context, callback) => {
     console.log('Create User Called')
     if (event.httpMethod !== "POST") {
         return { statusCode: 405, body: "Method Not Allowed" };
@@ -75,6 +75,7 @@ exports.handler = async (event, context, callback) => {
                                starts
                                ends
                                desc
+                               _id
                             }
                         }
                         _id

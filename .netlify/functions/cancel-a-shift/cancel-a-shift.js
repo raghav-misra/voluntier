@@ -50,13 +50,13 @@ exports.handler = async(event, context, callback) => {
     const shiftRequested = res.data.data.findShiftByID
     if (user !== undefined && typeof req.id == "string") {
 
-        //Make sure user is not already signed up AND that slots are not maxed
-        if (shiftRequested.signedUp.data.map(e => e._id).includes(user._id) == false && shiftRequested.max > shiftRequested.signedUp.data.length) {
+        //Make sure user is signed up for them
+        if (shiftRequested.signedUp.data.map(e => e._id).includes(user._id)) {
 
             let updateUser = await axios.post(endpoint, {
                 query: `mutation{
                         partialUpdateUser(id:${user._id},data:{
-                          shifts:{connect:"${shiftRequested._id}"}
+                          shifts:{disconnect:"${shiftRequested._id}"}
                         }){
                           _id
                         }
@@ -75,7 +75,7 @@ exports.handler = async(event, context, callback) => {
                     mutation {
                         partialUpdateShift(
                           id: ${user._id}
-                          data: { signedUp: { connect: "${shiftRequested._id}" } }
+                          data: { signedUp: { disconnect: "${shiftRequested._id}" } }
                         ) {
                           _id
                         }
@@ -111,7 +111,7 @@ exports.handler = async(event, context, callback) => {
                 statusCode: 200,
                 body: JSON.stringify({
                     success: false,
-                    error: "This shift is full or you have already signed up."
+                    error: "You have not signed up for this slot"
                 }),
             }
         }

@@ -4,12 +4,15 @@
 			<div class="hero-body">
 				<h1 class="subtitle is-2">Leaderboard</h1>
 			</div>
+			
 		</div>
+
 		<section class="container">
 			<div class="chart">
 				<h1 style="font-size: 50px" class="title leaderboard-header">
 					Top 10 Volunteers in {{ userData.state.toUpperCase() }}
 				</h1>
+
 				<column-chart
 					:data="[
 						['2nd place', 100],
@@ -19,6 +22,7 @@
 				>
 				</column-chart>
 			</div>
+			
 			<div>
 				<div v-if="loaded" class="center examplex">
 					<vs-table striped>
@@ -48,6 +52,8 @@
 					></b-skeleton>
 				</div>
 			</div>
+
+			<footer class="section"></footer>
 		</section>
 	</div>
 </template>

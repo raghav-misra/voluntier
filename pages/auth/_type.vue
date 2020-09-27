@@ -26,7 +26,7 @@
 								<b-input v-model="password" type="password" />
 							</b-field>
 
-							<b-button type="is-success" native-type="submit">
+							<b-button :loading="loading" type="is-success" native-type="submit">
 								Create an account
 							</b-button>
 						</div>
@@ -61,7 +61,7 @@
 								<b-input v-model="password" type="password" />
 							</b-field>
 
-							<b-button type="is-success" native-type="submit">
+							<b-button :loading="loading" type="is-success" native-type="submit">
 								Login
 							</b-button>
 						</div>
@@ -82,6 +82,7 @@ export default {
 			email: "",
 			password: "",
 			background: require("~/assets/loginimage2.png"),
+			loading:false
 		};
 	},
 
@@ -96,6 +97,7 @@ export default {
 
 	methods: {
 		async triggerSignup() {
+			this.loading = true
 			try {
 				const user = await this.auth.signup(this.email, this.password);
 				Toast.open("Confirmation email sent! Login after confirming");
@@ -103,9 +105,11 @@ export default {
 			} catch (e) {
 				Toast.open("Error, try again " + e);
 			}
+				this.loading = false
 		},
 
 		async triggerLogin() {
+			this.loading = true
 			try {
 				// Get identity:
 				const userIdentity = await this.auth.login(
@@ -149,6 +153,7 @@ export default {
 					Toast.open("Unknown Password/Email");
 				else Toast.open("Unknown Error");
 			}
+			this.loading = false
 		},
 	},
 };

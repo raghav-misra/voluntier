@@ -31,6 +31,7 @@
 					<!-- Finish -->
 					<b-button
 						type="is-success is-light is-medium"
+						:loading="loading"
 						v-if="currentQuestion === questions.length - 1"
 						@click="submitAnswers()"
 					>
@@ -78,6 +79,7 @@ export default {
 			],
 			currentQuestion: 0,
 			answers: {},
+			loading:false
 		};
 	},
 
@@ -86,6 +88,7 @@ export default {
 			this.answers[this.questions[this.currentQuestion].name] = answer;
 		},
 		async submitAnswers() {
+			this.loading = true
 			console.log(this.answers);
 			try {
 				const coords = await this.$axios(
@@ -126,6 +129,7 @@ export default {
 			} catch (e) {
 				Toast.open(`Error: ${e}`);
 			}
+			this.loading = false
 		},
 	},
 };

@@ -1,16 +1,20 @@
 <template>
 	<div>
 		<header>
-			<div class="top-bar-hero has-background-dark">
+			<div class="top-bar hero is-dark">
 				<div class="hero-body">
-					<vs-avatar size="80" primary badge badge-color="success">
-						<template #text>
-							{{ userData.firstName }} {{ userData.lastName }}
-						</template>
-					</vs-avatar>
-					<span class="has-text-success subtitle is-2">
+					<div class="avatar has-background-info">
+						{{ userData.firstName[0] }}
+						{{ userData.lastName[0] }}
+						<div class="badge has-background-success"></div>
+					</div>
+					<span class="has-text-success subtitle is-2 no-ttl-margin">
 						Welcome {{ userData.firstName }}
 					</span>
+
+					<b-button type="is-primary" class="view-org-button">
+						My Organizations
+					</b-button>
 				</div>
 			</div>
 		</header>
@@ -35,7 +39,9 @@
 						{{ moment.unix(shift.starts).format("hh:mm") }} -
 						{{ moment.unix(shift.ends).format("hh:mm") }}
 					</h2>
-					<b-button type="is-danger">Cancel</b-button>
+					<b-button @click="cancelShift(shift)" type="is-danger"
+						>Cancel</b-button
+					>
 				</section>
 
 				<section
@@ -56,7 +62,7 @@
 			</div>
 		</section>
 
-		<section class="section container">
+		<section class="section">
 			<div class="columns">
 				<div class="column">
 					<h1 class="title" id="myStats">My Stats</h1>
@@ -153,6 +159,43 @@ export default {
 			return { milestones, nextMilestone };
 		},
 	},
+	methods: {
+		async cancelShift(modalData) {
+			const res = await this.$axios(
+				`${process.env.BASE_URL}/cancel-a-shift`,
+				{
+					method: "POST",
+					headers: {
+						authorization: `Bearer ${this.$store.state.userIdentity.token.access_token}`,
+					},
+					data: JSON.stringify({
+						id: modalData._id,
+					}),
+				}
+			);
+			console.log(res.data);
+			if (res.data.success) {
+				Toast.open({
+					type: "is-success",
+					message: `You have canceled your slot for ${modalData.title}`,
+				});
+				this.trySync();
+			} else {
+				Toast.open({
+					type: "is-danger",
+					message: `An Error Has Occurred. ${res.data.error}`,
+				});
+			}
+		},
+		trySync() {
+			try {
+				this.$store.dispatch("SYNC_USER_DATA");
+			} catch (e) {
+				console.log("Error in syncing user: ", e);
+			}
+		},
+	},
+
 	data() {
 		return {
 			milestones: [
@@ -202,9 +245,12 @@ export default {
 		};
 	},
 	beforeCreate() {
-		try { this.$store.dispatch("SYNC_USER_DATA"); }
-		catch (e) { console.log("Error in syncing user: ", e); }
-	}
+		try {
+			this.$store.dispatch("SYNC_USER_DATA");
+		} catch (e) {
+			console.log("Error in syncing user: ", e);
+		}
+	},
 };
 </script>
 
@@ -234,8 +280,9 @@ export default {
 	margin: 5%;
 }
 .milestones {
-	max-height: 50vh;
+	max-height: 53vh;
 	overflow-y: scroll;
+	margin-top: 0;
 }
 .shift-card * {
 	color: white !important;
@@ -245,13 +292,37 @@ export default {
 	display: inline-block;
 }
 
-.vs-avatar-content {
-	margin-right: 1.5rem;
-}
-
-.hero-body {
+.top-bar .hero-body {
 	display: flex;
 	align-items: center;
+}
+
+.top-bar .hero-body > * {
+	margin: 0 0.5rem;
+}
+
+.top-bar .hero-body > button {
+	justify-self: flex-end;
+}
+
+.avatar {
+	width: 5rem;
+	height: 5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+	border-radius: 50%;
+	position: relative;
+}
+
+.avatar .badge {
+	position: absolute;
+	border-radius: 50%;
+	bottom: 0.25rem;
+	right: 0.25rem;
+	width: 1.25rem;
+	height: 1.25rem;
 }
 
 .event-container {

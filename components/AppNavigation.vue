@@ -14,15 +14,25 @@
 			<b-navbar-item tag="nuxt-link" to="/user">
 				Dashboard
 			</b-navbar-item>
+			<b-navbar-item tag="nuxt-link" to="/user#myStats">
+				Statistics
+			</b-navbar-item>
+			<b-navbar-item tag="nuxt-link" to="/user#myStats">
+				Milestones
+			</b-navbar-item>
+			<b-navbar-item tag="nuxt-link" to="/org">
+				Organizations
+			</b-navbar-item>
 			<b-navbar-item tag="nuxt-link" to="/discover">
 				Discover Shifts
 			</b-navbar-item>
 			<b-navbar-item tag="nuxt-link" to="/leaderboard">
 				Leaderboard
 			</b-navbar-item>
-			<b-navbar-item tag="nuxt-link" to="/user#myStats">
-				Statistics
+			<b-navbar-item tag="nuxt-link" to="/user">
+				Account Settings
 			</b-navbar-item>
+			
 		</template>
 
 		<template slot="end">
@@ -59,7 +69,7 @@ export default Vue.extend({
 	methods: {
 		logout() {
 			this.$store.commit("LOGOUT");
-			this.$router.push("/auth/signup");
+			this.$router.push("/auth/login");
 		},
 	},
 });
