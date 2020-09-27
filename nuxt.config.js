@@ -29,7 +29,15 @@ export default {
             {
                 rel: "stylesheet",
                 href: "https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;700&display=swap"
+            },
+            {
+                rel: "stylesheet",
+                href: "https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
             }
+
+        ],
+        script: [
+            { src: "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js" }
         ]
     },
 
@@ -39,7 +47,7 @@ export default {
     ],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-    plugins: [],
+    plugins: [{ src: '@/plugins/vuesax.js' }],
 
     // Auto import components (https://go.nuxtjs.dev/config-components)
     components: true,

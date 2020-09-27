@@ -9,7 +9,7 @@
 
 <style scoped>
 .current-page {
-    min-height: 100vh;
+    min-height: calc(100vh - 3.25rem);
     display: flex;
     flex-direction: column;
 }

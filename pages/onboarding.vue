@@ -2,7 +2,7 @@
 
 <template>
     <div class="onboarding">
-        <div class="section has-background-dark">
+        <div class="section header has-background-dark">
             <h1 class="title has-text-light">
                 Fill out your profile.
             </h1>
@@ -19,7 +19,7 @@
                 <div class="buttons">
                     <!-- Next -->
                     <b-button 
-                        type="is-success" 
+                        type="is-success is-light is-medium" 
                         v-if="currentQuestion < (questions.length - 1)"
                         @click="currentQuestion++">
                         Next Question
@@ -27,7 +27,7 @@
 
                     <!-- Finish -->
                     <b-button 
-                        type="is-success" 
+                        type="is-success is-light  is-medium" 
                         v-if="currentQuestion === (questions.length - 1)"
                         @click="submitAnswers()">
                         Save Profile
@@ -35,7 +35,7 @@
 
                     <!-- Go back -->
                     <b-button 
-                        type="is-info" 
+                        type="is-info is-light  is-medium" 
                         v-if="currentQuestion > 0"
                         @click="currentQuestion--">
                         Last Question
@@ -99,7 +99,7 @@ export default {
                 console.log(userData)
 
                 // Save to DB:
-                this.$store.commit("SET_USER_DATA", userData);
+                this.$store.commit("SET_USER_DATA", userData.data.data);
 
                 // Success and redirect:
                 Toast.open("Saved data!");
@@ -119,6 +119,11 @@ export default {
     flex: 1;
     display: flex;
     flex-direction: column;
+    background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+}
+
+.header{
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .onboarding .current-question {
@@ -133,6 +138,7 @@ export default {
 }
 
 .onboarding .label {
-    font-size: 1.5rem !important;
+    color: white !important;
+    font-size: 2rem !important;
 }
 </style>

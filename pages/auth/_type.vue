@@ -1,69 +1,78 @@
 <template>
-	<div class="section">
+	<div class="auth-page">
 		<form
 			v-if="authType === `signup`"
 			@submit.prevent="triggerSignup"
-			class="signup-form"
+			class="login-form is-signup section"
 		>
-			<h1 class="title">Signup</h1>
+			<h1 class="main-head title is-1 has-text-centered">Signup</h1>
+			<br /><br />
 
 			<div class="container">
-				<b-field label="Email Address">
-					<b-input v-model="email" type="email" />
-				</b-field>
+				<div class="columns $column-gap=1rem">
+					<div class="column">
+						<img src="~/assets/volunteer.png" alt="loginimage" />
+					</div>
 
-				<b-field label="Password">
-					<b-input v-model="password" type="password" />
-				</b-field>
+					<div class="column">
+						<div class="column2">
+							<h1 class="title is-2">Let's Get Going!</h1>
 
-				<b-button type="is-success" native-type="submit">
-					Create your account!
-				</b-button>
+							<b-field label="Email Address">
+								<b-input v-model="email" type="email" />
+							</b-field>
+
+							<b-field label="Password">
+								<b-input v-model="password" type="password" />
+							</b-field>
+
+							<b-button type="is-success" native-type="submit">
+								Create an account
+							</b-button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</form>
-
 
 		<form
 			v-if="authType === `login`"
 			@submit.prevent="triggerLogin"
-			class="login-form"
+			class="login-form is-login section"
 		>
-			
-			<h1 class="title">Login</h1>
-			
+			<h1 class="main-head title is-1 has-text-centered">Login</h1>
+			<br /><br />
 
 			<div class="container">
-				<div class="columns is-gapless">
-
+				<div class="columns $column-gap=1rem">
 					<div class="column">
-						<img src=~assets/loginimage.jpg alt=loginimage>
+						<img src="~/assets/volunteer.png" alt="loginimage" />
 					</div>
 
 					<div class="column">
-						<b-field label="Email Address">
-							<b-input v-model="email" type="email" />
-						</b-field>
+						<div class="column2">
+							<h1 class="title is-2">Welcome Back!</h1>
 
-						<b-field label="Password">
-							<b-input v-model="password" type="password" />
-						</b-field>
+							<b-field label="Email Address">
+								<b-input v-model="email" type="email" />
+							</b-field>
 
-						<b-button type="is-success" native-type="submit">
-							Login
-						</b-button>
+							<b-field label="Password">
+								<b-input v-model="password" type="password" />
+							</b-field>
+
+							<b-button type="is-success" native-type="submit">
+								Login
+							</b-button>
+						</div>
 					</div>
-					
-
 				</div>
-
-				
-				
 			</div>
 		</form>
 	</div>
 </template>
 
-<script lang="ts">
+<script>
 import GoTrue from "gotrue-js";
 import { ToastProgrammatic as Toast } from "buefy";
 
@@ -72,6 +81,7 @@ export default {
 		return {
 			email: "",
 			password: "",
+			background: require("~/assets/loginimage2.png"),
 		};
 	},
 
@@ -97,34 +107,35 @@ export default {
 
 		async triggerLogin() {
 			try {
-                // Get identity:
+				// Get identity:
 				const userIdentity = await this.auth.login(
 					this.email,
 					this.password
-                );
-                console.log("User Identity:", userIdentity);
-                
-				
-                // Get data:
-				const userData = await this.$axios(`${process.env.BASE_URL}/get-user`, {
-					method: "POST",
-					headers: {
-						Authorization: `Bearer ${userIdentity.token.access_token}`,
-					},
-                });
-                console.log("User Data:", userData);
+				);
+				console.log("User Identity:", userIdentity);
 
-                // Save to store:
-                this.$store.commit("SET_USER_IDENTITY", userIdentity);
-                userData.data.success &&
-                    this.$store.commit("SET_USER_DATA", userData);
+				// Get data:
+				const userData = await this.$axios(
+					`${process.env.BASE_URL}/get-user`,
+					{
+						method: "POST",
+						headers: {
+							Authorization: `Bearer ${userIdentity.token.access_token}`,
+						},
+					}
+				);
+				console.log("User Data:", userData);
 
-                Toast.open("Login successful.");
+				// Save to store:
+				this.$store.commit("SET_USER_IDENTITY", userIdentity);
+				userData.data.success &&
+					this.$store.commit("SET_USER_DATA", userData.data.data);
 
-                this.$router.push(userData.data.success ? 
-                    "/user" : 
-                    "/onboarding"
-                );
+				Toast.open("Login successful.");
+
+				this.$router.push(
+					userData.data.success ? "/user" : "/onboarding"
+				);
 			} catch (_e) {
 				const error = `${_e}`;
 				console.log(error);
@@ -143,26 +154,44 @@ export default {
 };
 </script>
 
-<style scoped>
-
-.section {
-  width:100vw;
-  height:100vh;
-  background-image: url('~assets/loginbackground.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-
+<style>
+.auth-page.section {
+	width: 100vw;
+	height: 100vh;
 }
 
-.login-form .container{
-	margin-top: 10rem;
-	width: 300px;
+.login-form *:not(input),
+.signup-form *:not(input) {
+	color: white !important;
 }
 
-.login-form .container .columns {
-	
+.login-form {
+	background-image: linear-gradient(to right, #ed6ea0 0%, #ec8c69 100%);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
 }
 
+.login-form.is-signup {
+	background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+}
 
+.main-head {
+	margin-top: 4rem;
+}
+
+.login-form .container,
+.signup-form .container {
+	margin-top: 2rem;
+}
+
+.login-form .container .columns .column {
+	width: 500px;
+}
+
+.login-form .container .columns .column2 {
+	width: 30rem;
+	height: 100rem;
+	margin-top: 3rem;
+}
 </style>
