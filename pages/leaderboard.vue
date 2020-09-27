@@ -106,9 +106,9 @@
       });
       this.users = users.slice(0, 10);
       this.top3 = [
-        [users[1].firstName, 100],
+        [users[0].firstName, 100],
         [users[0].firstName, 200],
-        [users[2].firstName, 50],
+        [users[0].firstName, 50],
       ]
       this.loaded = true;
 

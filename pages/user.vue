@@ -25,6 +25,10 @@
 					<i class="bx bx-search"></i>
 					Find Shifts Near Me
 				</b-button>
+					<b-button tag="nuxt-link" to="/checkin" type="is-success">
+					<i class='bx bx-clipboard' ></i>
+					Check-in
+				</b-button>
 			</h1>
 
 			<div class="event-container">
@@ -66,7 +70,6 @@
 			<div class="columns">
 				<div class="column">
 					<h1 class="title" id="myStats">My Stats</h1>
-					<br />
 					<section class="shift-card fullWidth">
 						<h2 class="subtitle">Hours Worked</h2>
 						<br />
@@ -137,13 +140,21 @@
 						</vs-card>
 					</div>
 				</div>
+				<div class="column">
+					<h1 class="title" id="myCalender">Calendar</h1>
+					 <v-calendar :attributes="userData.shifts.data.map(s => { 
+						return  { key: s.title, highlight: true, dates: new Date(s.starts*1000) }
+						 })" is-dark></v-calendar>
+				</div>
 			</div>
 		</section>
 	</div>
 </template>
 
 <script>
+import { ToastProgrammatic as Toast } from "buefy";
 export default {
+	
 	middleware: "auth",
 	computed: {
 		userData() {
@@ -339,5 +350,11 @@ export default {
 	white-space: nowrap;
 	overflow-x: scroll;
 	position: relative;
+}
+</style>
+
+<style>
+.vc-bg-gray-900 {
+	background: #363636 !important;
 }
 </style>

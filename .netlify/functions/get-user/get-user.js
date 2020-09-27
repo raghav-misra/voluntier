@@ -35,6 +35,37 @@ exports.handler = async(event, context) => {
                     websiteUrl
                     desc
                     _id
+                    members{
+                        data{
+                        _id
+                        firstName
+                        lastName
+                        email
+                        }
+                    }
+                    shifts{
+                        data{
+                            title
+                            desc
+                            qualifications
+                            state
+                            city
+                            lat
+                            lng
+                            starts
+                            ends
+                            address
+                            max
+                            signedUp{
+                                data{
+                                    firstName
+                                    lastName
+                                    email
+                                    _id
+                                }
+                            }
+                        }
+                    }
                   }
                 }
                 shifts(_size:500){

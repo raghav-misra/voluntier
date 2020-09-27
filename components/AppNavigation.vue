@@ -29,7 +29,7 @@
 			<b-navbar-item tag="nuxt-link" to="/leaderboard">
 				Leaderboard
 			</b-navbar-item>
-			<b-navbar-item tag="nuxt-link" to="/user">
+			<b-navbar-item tag="nuxt-link" to="/account">
 				Account Settings
 			</b-navbar-item>
 			

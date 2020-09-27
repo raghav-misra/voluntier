@@ -54,33 +54,18 @@ exports.handler = async(event, context, callback) => {
     })
     const user = res.data.data.getUser
     const org = res.data.data.findOrganizationByID
-    if (user !== null && org !== null && typeof req.id == "string" && typeof req.shift == "object") {
+    if (user !== null && org !== null && typeof req.email == "string" && typeof req.id == "string") {
 
         //Make sure user in the org
         if (org.members.data.map(e => e._id).includes(user._id)) {
 
-            let createShift = await axios.post(endpoint, {
-                query: `mutation{
-                    createShift(data:{
-                      title:"${req.shift.title}"
-                      desc:"${req.shift.desc}"
-                      qualifications:"${req.shift.qualifications}",
-                      state:"${req.shift.state.toLowerCase()}",
-                      city:"${req.shift.city.toLowerCase()}",
-                      lat:${req.shift.lat},
-                      lng:	${req.shift.lng},
-                      starts:"${req.shift.starts}",
-                      ends:"${req.shift.ends}",
-                      address:"${req.shift.address}",
-                      max:${req.shift.max},
-                      organization:{connect:${req.id}},
-                      organizationID:"${req.id}"
-                      
-                    }){
+            let userToAdd = await axios.post(endpoint, {
+                query: `{
+                    getUserByEmail(email: "${req.email}") {
                       _id
                     }
                   }
-                      `,
+                   `,
 
             }, {
                 headers: {
@@ -90,19 +75,47 @@ exports.handler = async(event, context, callback) => {
             })
 
 
-            if (createShift.data.data.createShift !== null) {
-                return {
-                    statusCode: 200,
-                    body: JSON.stringify({
-                        success: true,
-                    }),
+            if (userToAdd.data.data.getUserByEmail !== null) {
+                let addToOrg = await axios.post(endpoint, {
+                    query: `mutation{
+                        partialUpdateOrganization(id:${org._id},data:{
+                          members:{disconnect:${userToAdd.data.data.getUserByEmail._id}}
+                        }){
+                          _id
+                        }
+                      }
+                       `,
+
+                }, {
+                    headers: {
+                        "Authorization": `Bearer ${process.env.DB}`,
+                        "X-Schema-Preview": "partial-update-mutation"
+                    }
+                })
+                if (addToOrg.data.data.partialUpdateOrganization !== null) {
+                    return {
+                        statusCode: 200,
+                        body: JSON.stringify({
+                            success: true,
+                        }),
+                    }
+                } else {
+                    return {
+                        statusCode: 200,
+                        body: JSON.stringify({
+                            success: false,
+                            error: "Could not add user to Organization"
+                        }),
+                    }
                 }
+
+
             } else {
                 return {
                     statusCode: 200,
                     body: JSON.stringify({
                         success: false,
-                        error: "Error In Creating Shift"
+                        error: "Could not find a user with that email!"
                     }),
                 }
             }

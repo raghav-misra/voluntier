@@ -182,8 +182,9 @@ export default {
 			);
 
 			console.log(shiftReq.data);
+ 			const now = new Date().getTime()
+			this.shiftsByState = shiftReq.data.data.filter(s => Math.sign(new Date(parseInt(s.ends) * 1000) - now) == 1);
 
-			this.shiftsByState = shiftReq.data.data;
 		} catch (e) {
 			console.log(e);
 		}

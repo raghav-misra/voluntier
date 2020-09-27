@@ -1,8 +1,11 @@
 const axios = require("axios")
 exports.handler = async(event, context, callback) => {
-    console.log('Cancel Shift Called')
+    console.log('Delete Shift Called')
     if (event.httpMethod !== "POST") {
-        return { statusCode: 405, body: "Method Not Allowed" };
+        return {
+            statusCode: 405,
+            body: "Method Not Allowed"
+        };
     }
     // Reading the context.clientContext will give us the current user
     const endpoint = "https://graphql.fauna.com/graphql"
@@ -24,46 +27,59 @@ exports.handler = async(event, context, callback) => {
     //USER IS AUTH - Get Data -------------------------
     let res = await axios.post(endpoint, {
         query: `{
-            getUser(netlifyID: "${claims.sub}") {
+            getUser(netlifyID:"${claims.sub}"){
               _id
-              shifts{
+              organizations{
                 data{
+                  name
                   _id
                 }
               }
             }
-            findShiftByID(id:${req.id}){
-                max
-                _id
-                signedUp{
+            findOrganizationByID(id:${req.id}){
+                    _id
+                  members{
                   data{
                     _id
                   }
                 }
-              }
+            }
           }
-          
           `,
 
-    }, { headers: { "Authorization": `Bearer ${process.env.DB}` } })
+    }, {
+        headers: {
+            "Authorization": `Bearer ${process.env.DB}`
+        }
+    })
     const user = res.data.data.getUser
-    const shiftRequested = res.data.data.findShiftByID
-    if (user !== undefined && typeof req.id == "string") {
+    const org = res.data.data.findOrganizationByID
+    if (user !== null && org !== null && typeof req.id == "string") {
 
-        //Make sure user is signed up for them
-        if (shiftRequested.signedUp.data.map(e => e._id).includes(user._id)) {
+        //Make sure user in the org
+        if (org.members.data.map(e => e._id).includes(user._id) && org.shifts.data.map(e => e._id).includes(req.id)) {
 
-            let updateShift = await axios.post(endpoint, {
-                query: `
-                    mutation {
-                        partialUpdateShift(
-                          id: ${shiftRequested._id}
-                          data: { signedUp: { disconnect: "${user._id}" } }
-                        ) {
-                          _id
-                        }
-                      }
+            let d = await axios.post(endpoint, {
+                query: `mutation{
+                    createShift(data:{
+                      title:"${req.shift.title}"
+                      desc:"${req.shift.desc}"
+                      qualifications:"${req.shift.qualifications}",
+                      state:"${req.shift.state}",
+                      city:"${req.shift.city}",
+                      lat:${req.shift.lat},
+                      lng:	${req.shift.lng},
+                      starts:"${req.shift.starts}",
+                      ends:"${req.shift.ends}",
+                      address:"${req.shift.address}",
+                      max:${req.shift.max},
+                      organization:{connect:${org_id}},
+                      organizationID:"${org_id}"
                       
+                    }){
+                      _id
+                    }
+                  }
                       `,
 
             }, {
@@ -72,7 +88,9 @@ exports.handler = async(event, context, callback) => {
                     "X-Schema-Preview": "partial-update-mutation"
                 }
             })
-            if (updateShift.data.data.partialUpdateShift !== null) {
+
+
+            if (updateUser.data.data.createShift !== undefined) {
                 return {
                     statusCode: 200,
                     body: JSON.stringify({
@@ -84,7 +102,7 @@ exports.handler = async(event, context, callback) => {
                     statusCode: 200,
                     body: JSON.stringify({
                         success: false,
-                        error: "Unknown Error"
+                        error: "Error In Creating Shift"
                     }),
                 }
             }
@@ -94,7 +112,7 @@ exports.handler = async(event, context, callback) => {
                 statusCode: 200,
                 body: JSON.stringify({
                     success: false,
-                    error: "You have not signed up for this slot"
+                    error: "No access"
                 }),
             }
         }
