@@ -9,6 +9,7 @@
         </div>
 
         <div class="section current-question">
+              <img src="@/assets/images/onboarding.svg" alt="onboarding" />
             <div>
                 <b-field 
                     v-for="(question, i) in questions" 
@@ -55,11 +56,11 @@ export default {
         return {
             questions: [
                 {
-                    text: "First Name:",
+                    text: "First Name",
                     name: "firstName"
                 },
                 {
-                    text: "Last Name:",
+                    text: "Last Name",
                     name: "lastName"
                 },
                 {
@@ -122,7 +123,12 @@ export default {
     background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
 }
 
-.header{
+.onboarding input {
+    background: #363636 !important;
+    color: white !important;
+}
+
+.onboarding .header {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
@@ -131,6 +137,11 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.onboarding .current-question img:first-of-type {
+    width: 25%;
+    margin-right: 2rem;
 }
 
 .onboarding .current-question > div {

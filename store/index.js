@@ -5,8 +5,8 @@ export const state = () => ({
         APIUrl: process.env.IDENTITY_URL,
         setCookie: true
     }),
-    userIdentity: true,
-    userData: { firstName: "Urmom", lastName: "LOL" }
+    userIdentity: null,
+    userData: null
 });
 
 export const mutations = {

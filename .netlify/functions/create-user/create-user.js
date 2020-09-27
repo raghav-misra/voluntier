@@ -44,7 +44,7 @@ exports.handler = async(event, context, callback) => {
                 state:"${req.state.toLowerCase()}",
                 hoursWorked: 0,
                 shiftsWorked:0,
-                shifts:[]
+
                 
               }),{
                 _id
@@ -63,7 +63,16 @@ exports.handler = async(event, context, callback) => {
                         lastName
                         city
                         state
-                        hours
+                        hoursWorked
+                        shiftsWorked
+                        shifts(_size:500){
+                            data{
+                               title
+                               starts
+                               ends
+                               desc
+                            }
+                        }
                         _id
                     }
                   }

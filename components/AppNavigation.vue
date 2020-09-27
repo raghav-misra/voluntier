@@ -16,6 +16,9 @@
 			<b-navbar-item href="#" tag="nuxt-link" :to="{ path: '/user' }">
 				Dashboard
 			</b-navbar-item>
+			<b-navbar-item href="#" tag="nuxt-link" :to="{ path: '/discover' }">
+				Discover Shifts
+			</b-navbar-item>
 		</template>
 
 		<template slot="end">

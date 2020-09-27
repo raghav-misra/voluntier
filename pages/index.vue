@@ -60,39 +60,42 @@
 		/>
 
 		<div class="has-text-centered">
-			<div class="level benefit-cards">
-				<div class="level-item">
+			<div class="columns benefit-cards">
+				<div class="column">
 					<div>
 						<h2 class="subtitle">Personalized</h2>
 						<h1 class="title">Recommendations</h1>
 						<br />
 						<p>
-							Find shifts based on your interests and acheivements
+							Discover shifts based on your interests.
 						</p>
-					</div>
+						<img class="cover-image" src="@/assets/images/recommend.svg" alt="recommend" />
+						</div>
 				</div>
 
-				<div class="level-item">
+				<div class="column">
 					<div>
 						<h2 class="subtitle">Find shifts</h2>
 						<h1 class="title">Closest to you</h1>
 						<br />
-						<p>Find the perfect shifts in your city</p>
+						<p>Find the perfect shifts in your city.</p>
+						<img class="cover-image" src="@/assets/images/world.svg" alt="world" />
 					</div>
 				</div>
 
-				<div class="level-item">
+				<div class="column">
 					<div>
 						<h2 class="subtitle">Interactive</h2>
 						<h1 class="title">Leaderboard</h1>
 						<br />
-						<p>Your standing in your city and state</p>
+						<p>Your standing in your city and state.</p>
+						<img class="cover-image" src="@/assets/images/leaderboard.svg" alt="leaderboard" />
 					</div>
 				</div>
 			</div>
 
-			<div class="level benefit-cards">
-				<div class="level-item">
+			<div class="columns benefit-cards">
+				<div class="column">
 					<div>
 						<h2 class="subtitle">Detailed</h2>
 						<h1 class="title">Statistics</h1>
@@ -100,24 +103,27 @@
 						<p>
 							Receive detailed statistics on past shifts.
 						</p>
+						<img class="cover-image" src="@/assets/images/stats.svg" alt="stats" />
 					</div>
 				</div>
 
-				<div class="level-item">
+				<div class="column">
 					<div>
 						<h2 class="subtitle">Unlock</h2>
 						<h1 class="title">Milestones</h1>
 						<br />
 						<p>Unlock milestones after volunteering.</p>
+							<img class="cover-image" src="@/assets/images/milestone.svg" alt="milestone" />
 					</div>
 				</div>
 
-				<div class="level-item">
+				<div class="column">
 					<div>
 						<h2 class="subtitle">Detailed</h2>
 						<h1 class="title">Calendar</h1>
 						<br />
 						<p class>Track your upcoming shifts in a calendar.</p>
+						<img class="cover-image" src="@/assets/images/calendar.svg" alt="calendar" />
 					</div>
 				</div>
 			</div>
@@ -228,19 +234,19 @@
 .benefit-cards {
 	align-items: start;
 	margin: 0 !important;
+	background-color: #363636;
 }
 
-.benefit-cards > .level-item {
-	background-color: #363636;
+.benefit-cards > .column {
 	padding: 2rem 1rem; 
 }
 
-.benefit-cards > .level-item h2 {
+.benefit-cards > .column h2 {
 	line-height: 2rem;
 	margin-bottom: 1rem;
 }
 
-.benefit-cards > .level-item p {
+.benefit-cards > .column p {
 	font-size: 1.25rem !important;
 }
 

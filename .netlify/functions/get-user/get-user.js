@@ -24,18 +24,28 @@ exports.handler = async(event, context) => {
                 lastName
                 city
                 state
-                hours
+                hoursWorked
+                shiftsWorked
+                shifts(_size:500){
+                    data{
+                       title
+                       starts
+                       ends
+                       desc
+                    }
+                }
                 _id
             }
           }
           `,
 
     }, { headers: { "Authorization": `Bearer ${process.env.DB}` } })
+    console.log(res.data)
     const user = res.data.data.getUser
 
     if (user == null) {
         return {
-            statusCode: 500,
+            statusCode: 200,
             body: JSON.stringify({
                 success: false,
 
