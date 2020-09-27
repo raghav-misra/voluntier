@@ -4,10 +4,10 @@
 			<div class="hero-body">
 				<img
 					class="logo"
-					src="@/assets/logo.png"
+					src="@/assets/newlogo.png"
 					alt="logo"
-					width="150"
-					height="150"
+					width="200"
+					height="200"
 				/>
 				<div>
 					<h1 class="has-text-primary title is-2">VolunTier</h1>

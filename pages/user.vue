@@ -12,7 +12,7 @@
 						Welcome {{ userData.firstName }}
 					</span>
 
-					<b-button type="is-primary" class="view-org-button">
+					<b-button tag="nuxt-link" to="/org" type="is-primary" class="view-org-button">
 						My Organizations
 					</b-button>
 				</div>
@@ -83,30 +83,31 @@
 					<h1 class="title" id="myStats">Milestones</h1>
 					<div class="milestones mile-card">
 						<!-- cards for milestone -->
+						
 						<vs-card
-							v-if="userMilestones.nextMilestone !== undefined"
+							v-if="nextMilestone !== undefined"
 							type="3"
 						>
 							<template #title>
 								<h3>
 									Next Milestone:
-									{{ userMilestones.nextMilestone.title }}
+									{{ nextMilestone.title }}
 								</h3>
 							</template>
 							<template #img>
 								<img
 									style="transform: scale(0.5)"
-									:src="userMilestones.nextMilestone.path"
+									:src="nextMilestone.path"
 									alt=""
 								/>
 							</template>
 							<template #text>
 								<p class="has-text-weight-bold">
-									{{ userMilestones.nextMilestone.desc
+									{{ nextMilestone.desc
 									}}<br />
 									Only
 									{{
-										userMilestones.nextMilestone.hours -
+										nextMilestone.hours -
 										userData.hoursWorked
 									}}
 									Hours to go!
@@ -155,9 +156,16 @@ export default {
 			const milestones = this.milestones.filter(
 				(m) => m.hours <= this.userData.hoursWorked
 			);
-			const nextMilestone = this.milestones.reverse()[milestones.length];
-			return { milestones, nextMilestone };
-		},
+			return { milestones };
+		}
+		
+	},
+	async mounted() {
+		const milestones = this.milestones.filter(
+				(m) => m.hours <= this.userData.hoursWorked
+			);
+			const nextMilestone = this.milestones.reverse().slice(milestones.length)[0];
+			this.nextMilestone = nextMilestone
 	},
 	methods: {
 		async cancelShift(modalData) {
@@ -198,6 +206,7 @@ export default {
 
 	data() {
 		return {
+			nextMilestone: undefined,
 			milestones: [
 				{
 					path: require("@/assets/milestones/200.png"),

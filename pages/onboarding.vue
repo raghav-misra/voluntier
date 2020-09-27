@@ -31,7 +31,6 @@
 					<!-- Finish -->
 					<b-button
 						type="is-success is-light is-medium"
-						:loading="loading"
 						v-if="currentQuestion === questions.length - 1"
 						@click="submitAnswers()"
 					>
@@ -49,6 +48,7 @@
 				</div>
 			</div>
 		</div>
+		<b-loading :is-full-page="true" v-model="loading" :can-cancel="false"></b-loading>
 	</div>
 </template>
 

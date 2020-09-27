@@ -6,7 +6,7 @@
 				tag="nuxt-link"
 				to="/"
 			>
-				vt
+				VT
 			</b-navbar-item>
 		</template>
 		<template slot="start">

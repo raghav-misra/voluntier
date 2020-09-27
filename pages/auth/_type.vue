@@ -26,7 +26,7 @@
 								<b-input v-model="password" type="password" />
 							</b-field>
 
-							<b-button :loading="loading" type="is-success" native-type="submit">
+							<b-button type="is-success" native-type="submit">
 								Create an account
 							</b-button>
 						</div>
@@ -61,7 +61,7 @@
 								<b-input v-model="password" type="password" />
 							</b-field>
 
-							<b-button :loading="loading" type="is-success" native-type="submit">
+							<b-button  type="is-success" native-type="submit">
 								Login
 							</b-button>
 						</div>
@@ -69,6 +69,7 @@
 				</div>
 			</div>
 		</form>
+		<b-loading :is-full-page="true" v-model="loading" :can-cancel="false"></b-loading>
 	</div>
 </template>
 

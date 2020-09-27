@@ -29,6 +29,14 @@ exports.handler = async(event, context) => {
                 lat
                 lng
                 shiftsWorked
+                organizations{
+                  data{
+                    name
+                    websiteUrl
+                    desc
+                    _id
+                  }
+                }
                 shifts(_size:500){
                     data{
                        title
@@ -40,6 +48,7 @@ exports.handler = async(event, context) => {
                 }
                 _id
             }
+            
           }
           `,
 
