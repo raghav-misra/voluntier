@@ -11,7 +11,7 @@
 				/>
 				<div>
 					<h1 class="has-text-primary title is-2">VolunTier</h1>
-					<h2 class="subtitle is-4">voluntiering in california</h2>
+					<h2 class="subtitle is-4">Making volunteering a fun experience</h2>
 				</div>
 			</div>
 		</div>
@@ -36,69 +36,88 @@
 								Welcome to VolunTier
 							</h2>
 							<h1 class="title is-5 has-text-primary">
-								Watch this video oget started!
-                                VolunTier is a way for (say
-								what it is)
+								Watch this video to get started! VolunTier is a
+								way for (say what it is)
 							</h1>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="header-before-cards card has-background-warning-light">
-			<div class="text-header-before-cards title is-2 has-text-primary">
-				<h1 class="title is-2 has-text-primary">
-					Start Volunteering and helping your community today!
+		<div class="header-before-cards card">
+			<div class="text-header-before-cards">
+				<br />
+				<h1 class="title is-3 has-text-primary">
+					Start volunteering and helping your community today!
 				</h1>
 			</div>
 		</div>
 
 		<img
 			class="cover-image"
-			src="~/assets/volunteer.png"
+			src="@/assets/volunteer.png"
 			alt="loginimage"
 		/>
 
-		<div class="section has-text-centered">
-			<div class="columns">
-				<div class="column">
-					<div class="card1">
-						<h2 class="title is-2 has-text-primary">
-							Find shifts near your location
-						</h2>
-						<h1 class="subtitle is-5 has-text-primary">
-							paragraph text
-						</h1>
+		<div class="has-text-centered">
+			<div class="level benefit-cards">
+				<div class="level-item">
+					<div>
+						<h2 class="subtitle">Personalized</h2>
+						<h1 class="title">Recommendations</h1>
+						<br />
+						<p>
+							Find shifts based on your interests and acheivements
+						</p>
 					</div>
 				</div>
-				<div class="column">
-					<div class="card2">
-						<h2 class="title is-2 has-text-primary">
-							Get personalized recommended shifts
-						</h2>
-						<h1 class="subtitle is-5 has-text-primary">
-							paragraph text
-						</h1>
+
+				<div class="level-item">
+					<div>
+						<h2 class="subtitle">Find shifts</h2>
+						<h1 class="title">Closest to you</h1>
+						<br />
+						<p>Use your location to find the perfect shifts</p>
 					</div>
 				</div>
-				<div class="column">
-					<div class="card3">
-						<h2 class="title is-2 has-text-primary">
-							compete with an interactive leaderboard
-						</h2>
-						<h1 class="subtitle is-5 has-text-primary">
-							paragraph text
-						</h1>
+
+				<div class="level-item">
+					<div>
+						<h2 class="subtitle">Interactive</h2>
+						<h1 class="title">Leaderboard</h1>
+						<br />
+						<p>See where you stand in your city and state.</p>
 					</div>
 				</div>
-				<div class="column">
-					<div class="card4">
-						<h2 class="title is-2 has-text-primary">
-							column title
-						</h2>
-						<h1 class="subtitle is-5 has-text-primary">
-							paragraph text
-						</h1>
+			</div>
+
+			<div class="level benefit-cards">
+				<div class="level-item">
+					<div>
+						<h2 class="subtitle">Personalized</h2>
+						<h1 class="title">Recommendations</h1>
+						<br />
+						<p>
+							Find shifts based on your interests and acheivements
+						</p>
+					</div>
+				</div>
+
+				<div class="level-item">
+					<div>
+						<h2 class="subtitle">Find shifts</h2>
+						<h1 class="title">Closest to you</h1>
+						<br />
+						<p>Use your location to find the perfect shifts</p>
+					</div>
+				</div>
+
+				<div class="level-item">
+					<div>
+						<h2 class="subtitle">Interactive</h2>
+						<h1 class="title">Leaderboard</h1>
+						<br />
+						<p>See where you stand in your city and state.</p>
 					</div>
 				</div>
 			</div>
@@ -121,7 +140,7 @@
 	margin-bottom: 1rem;
 }
 .main {
-	background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+	background-image: linear-gradient(to right, #ec77ab 0%, #7873f5 100%);
 }
 .media-main,
 .media-content {
@@ -203,7 +222,26 @@
 	text-align: center;
 	width: 200rem;
 	height: 5rem;
-	margin-bottom: 10rem;
+	margin-bottom: 3rem;
+}
+
+.benefit-cards {
+	align-items: start;
+	margin: 0 !important;
+}
+
+.benefit-cards > .level-item {
+	background-color: #363636;
+	padding: 2rem 1rem; 
+}
+
+.benefit-cards > .level-item h2 {
+	line-height: 2rem;
+	margin-bottom: 1rem;
+}
+
+.benefit-cards * {
+	color: white;
 }
 </style>
 

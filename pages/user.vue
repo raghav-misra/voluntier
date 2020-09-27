@@ -17,7 +17,7 @@
 		<section class="section">
 			<h1 class="title">
 				Upcoming Shifts&nbsp;&nbsp;
-				<b-button type="is-success">
+				<b-button tag="nuxt-link" to="/discover" type="is-success">
 					<i class="bx bx-search"></i>
 					Find Shifts Near Me
 				</b-button>
