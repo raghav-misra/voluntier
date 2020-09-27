@@ -25,9 +25,15 @@ exports.handler = async(event, context, callback) => {
     let res = await axios.post(endpoint, {
         query: `{
             getUser(netlifyID: "${claims.sub}") {
-              firstName
+              _id
+              shifts{
+                data{
+                  _id
+                }
+              }
             }
           }
+          
           `,
 
     }, { headers: { "Authorization": `Bearer ${process.env.DB}` } })

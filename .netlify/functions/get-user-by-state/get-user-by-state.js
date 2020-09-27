@@ -4,6 +4,7 @@ exports.handler = async(event, context) => {
         // Reading the context.clientContext will give us the current user
     const endpoint = "https://graphql.fauna.com/graphql"
     const claims = context.clientContext && context.clientContext.user
+    const req = JSON.parse(event.body);
     console.log('user claims', claims)
 
 
@@ -17,39 +18,27 @@ exports.handler = async(event, context) => {
     }
 
     //USER IS AUTH - Get Data -------------------------
-    const res = await axios.post(endpoint, {
-        query: `{
-            getUser(netlifyID: "${claims.sub}") {
-                firstName
-                lastName
-                city
-                state
-                hoursWorked
-                lat
-                lng
-                shiftsWorked
-                shifts(_size:500){
-                    data{
-                       title
-                       starts
-                       ends
-                       desc
-                    }
+    if (typeof req.state == "string") {
+        const res = await axios.post(endpoint, {
+            query: `
+            {
+                getUserByState(_size:500,state:"${req.state}"){
+                  data{
+                    firstName
+                    hoursWorked
+                  }
                 }
-                _id
-            }
-          }
+              }
           `,
 
-    }, { headers: { "Authorization": `Bearer ${process.env.DB}` } })
-    console.log(res.data)
-    const user = res.data.data.getUser
-
-    if (user == null) {
+        }, { headers: { "Authorization": `Bearer ${process.env.DB}` } })
+        console.log(res.data)
+        const shifts = res.data.data.getUserByState.data
         return {
             statusCode: 200,
             body: JSON.stringify({
-                success: false,
+                success: true,
+                data: shifts
 
             }),
         }
@@ -57,9 +46,11 @@ exports.handler = async(event, context) => {
         return {
             statusCode: 200,
             body: JSON.stringify({
-                success: true,
-                data: user
-            })
+                success: false,
+                error: "Invalid parameters"
+
+            }),
         }
     }
+
 }

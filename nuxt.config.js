@@ -47,7 +47,7 @@ export default {
     ],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-    plugins: [{ src: '@/plugins/vuesax.js' }],
+    plugins: ["@/plugins/vuesax.js", "@/plugins/vue2-google-maps.js", "@/plugins/vue-chartkick.js"],
 
     // Auto import components (https://go.nuxtjs.dev/config-components)
     components: true,
@@ -66,11 +66,14 @@ export default {
     axios: {},
 
     // Build Configuration (https://go.nuxtjs.dev/config-build)
-    build: {},
+    build: {
+        transpile: [/^vue2-google-maps($|\/)/]
+    },
 
     env: {
         BASE_URL: process.env.NODE_ENV !== "production" ?
             "http://localhost:8888/.netlify/functions" : "https://voluntier.netlify.app/.netlify/functions",
         IDENTITY_URL: "https://voluntier.netlify.app/.netlify/identity",
+        MAPS_JS_KEY: "AIzaSyAjh8lpH_ydhtY7Vs0Un35E-he0GT9IOog"
     }
 }

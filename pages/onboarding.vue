@@ -84,6 +84,20 @@ export default {
         async submitAnswers() {
             console.log(this.answers)
             try {
+                const coords = await this.$axios(`${process.env.BASE_URL}/geocode`, {
+                    method: "POST",
+                    headers: {
+                        authorization: `Bearer ${this.$store.state.userIdentity.token.access_token}`
+                    },
+                    data: JSON.stringify({
+                        input: `${this.answers.city.toLowerCase()}, ${this.answers.state.toLowerCase()}`
+                    })
+                });
+
+                // Get lat/long:
+                this.answers.lat = coords.data.data.lat;
+                this.answers.lng = coords.data.data.lng;
+
                 // Update data:
                 const userData = await this.$axios({
                     method: "post",
@@ -96,6 +110,8 @@ export default {
                         "X-POG-DATA": JSON.stringify(this.answers)
                     }
                 });
+
+                
 
                 console.log(userData)
 

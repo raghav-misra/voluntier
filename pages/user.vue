@@ -61,13 +61,14 @@
 			<div class="columns">
 				<div class="column">
 					<h1 class="title" id="myStats">My Stats</h1>
-					<section class="shift-card fullW">
+					<br>
+					<section class="shift-card fullWidth">
 						<h2 class="subtitle">Hours Worked</h2>
 						<br />
 						<h1 class="title">{{ userData.hoursWorked }}</h1>
 					</section>
-					<br>
-					<section class="shift-card">
+					<br />
+					<section class="shift-card fullWidth">
 						<h2 class="subtitle">Shifts Worked</h2>
 						<br />
 						<h1 class="title">{{ userData.shiftsWorked }}</h1>
@@ -134,8 +135,6 @@
 		</section>
 	</div>
 </template>
-
-
 
 <script>
 export default {
@@ -216,6 +215,9 @@ export default {
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 	transition: all 0.2s ease-in-out;
 }
+.fullWidth {
+	display: block;
+}
 .mile-card {
 	display: inline-block;
 	margin: 1.5rem;
@@ -225,7 +227,7 @@ export default {
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 	transition: all 0.2s ease-in-out;
 }
-.mile-card .vs-card-content{
+.mile-card .vs-card-content {
 	margin: 5%;
 }
 .milestones {

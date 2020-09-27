@@ -12,10 +12,12 @@
         "@nuxt/typescript-runtime": "^2.0.0",
         "@nuxtjs/axios": "^5.12.2",
         "axios": "^0.20.0",
+        "chart.js": "^2.9.3",
         "core-js": "^3.6.5",
         "gotrue-js": "^0.9.27",
         "nuxt": "^2.14.5",
         "nuxt-buefy": "^0.4.3",
+        "vue-chartkick": "^0.6.1",
         "vue2-google-maps": "^0.10.7",
         "vuesax": "^4.0.1-alpha.24"
     },

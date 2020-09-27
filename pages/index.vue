@@ -33,16 +33,28 @@
 
 				<div class="media-content">
 					<div class="card">
-						<div class="container">
-							<h2 class="title is-2 has-text-primary">
-								Welcome to VolunTier
-							</h2>
-							<h1 class="title is-5 has-text-primary">
-								Watch this demo video to get started! VolunTier
-								allows Organizers to post upcoming volunteering
-								shifts for their organizations. Volunteers can view these upcoming shifts, get recommended 
-							</h1>
-						</div>
+						<h3 class="title has-text-primary">
+							Welcome to VolunTier!
+						</h3>
+						
+						<p
+							style="
+								margin-left: 1rem;
+								margin-right: 1rem;
+								font-size: 20px;
+							"
+						>
+							VolunTier allows Organizers to post upcoming
+							volunteering shifts for their organizations.
+							Volunteers can view these upcoming shifts, and
+							get personalized reccomendations for where to
+							volunteer next. In addition, volunteers can find
+							shifts near their location, track their shifts
+							on a calender, view detailed statistics of their
+							past volunteering activity unlock milestones as
+							they progress, compete with other volunteers on
+							an interactive leaderboard, and much more.
+						</p>
 					</div>
 				</div>
 			</div>
@@ -127,7 +139,10 @@
 						<h2 class="subtitle">Unlock</h2>
 						<h1 class="title">Milestones</h1>
 						<br />
-						<p>Unlock milestones after volunteering.</p>
+						<p>
+							Unlock milestones as you progress and get more
+							hours.
+						</p>
 						<img
 							class="cover-image"
 							src="@/assets/images/milestone.svg"
@@ -151,7 +166,83 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		<br>
+		<section class="container">
+			<h1 class="title is-1 has-text-primary has-text-light">
+				Represent an organization?
+			</h1>
+			<div class="has-text-centered">
+					<h2 class="title has-text-light use-our-platform">
+					Use our platform to manage volunteers intuitively.
+				</h2>
+				<div class="columns organization-cards">
+					<div class="card column">
+						<div class="card-content">
+							<p class="title">
+								<i class="bx bx-world"></i> 
+							</p>
+							<p class="subtitle">
+								 Quickly find and
+								promote shifts
+							</p>
+						</div>
+					</div>
+
+					<div class="card column">
+						<div class="card-content">
+							<p class="title">
+								<i class="bx bx-trophy"></i> 
+							</p>
+							<p class="subtitle">
+								 Motivate your volunteers out of the box
+							</p>
+						</div>
+					</div>
+
+					<div class="card column">
+						<div class="card-content">
+							<p class="title">
+								<i class="bx bx-data"></i> 
+							</p>
+							<p class="subtitle">
+								Let us handle the tedious tasks like taking attendence, loging times, and managing shifts. 
+							</p>
+						</div>
+					</div>
+
+					<div class="card column">
+						<div class="card-content">
+							<p class="title">
+								<i class="bx bx-star"></i>
+							</p>
+							<p class="subtitle">
+								Use a platform that volunteers will love and engage with!
+							</p>
+						</div>
+					</div>
+
+					
+				</div>
+			</div>
+		</section>
+		<section class="hero is-medium is-primary is-bold">
+			<div class="hero-body">
+				<div class="container">
+					<h1 class="title">
+						What are you waiting for?
+					</h1>
+					<h2 class="subtitle">
+						Sign up for the best hub for both nonprofit organizations and volunteers!
+					</h2>
+					<router-link to="/auth/signup">
+					<b-button type="is-info">
+						Get Started
+					</b-button>
+					</router-link>
+				</div>
+			</div>
+		</section>
+		</div>
 </template>
 
 <style scoped>
@@ -183,20 +274,37 @@
 
 .media-content .card,
 .media-main .media-video {
-	height: calc(100vw / 5);
+	height: 25vw;
+	max-height: 25rem;
 	width: 95%;
 	margin: 5%;
 }
 
-.media-main .media-video {
-	height: calc(100vw / 5);
+.organization-cards {
+	position: relative;
+	top: 5rem;
+}
+
+.use-our-platform {
+	position: relative;
+	top: 5rem;
+}
+
+.media-content .card {
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .column .card {
 	height: 500px;
 	width: 400px;
+	margin: 1%;
 }
-
+.level .card{
+	display:inline-block;
+}
 .cover-image {
 	display: block;
 	margin-left: auto;
