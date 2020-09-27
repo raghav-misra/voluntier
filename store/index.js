@@ -12,4 +12,8 @@ export const state = () => ({
 export const mutations = {
     SET_USER_IDENTITY: (current, newIdentity) => current.userIdentity = newIdentity,
     SET_USER_DATA: (current, newData) => current.userData = newData,
+    LOGOUT: (current) => {
+        current.userIdentity = null;
+        current.userData = null;
+    }
 };

@@ -11,7 +11,9 @@
 				/>
 				<div>
 					<h1 class="has-text-primary title is-2">VolunTier</h1>
-					<h2 class="subtitle is-4">Making volunteering a fun experience</h2>
+					<h2 class="subtitle is-4">
+						Making volunteering a fun experience
+					</h2>
 				</div>
 			</div>
 		</div>
@@ -36,8 +38,9 @@
 								Welcome to VolunTier
 							</h2>
 							<h1 class="title is-5 has-text-primary">
-								Watch this video to get started! VolunTier is a
-								way for (say what it is)
+								Watch this demo video to get started! VolunTier
+								allows Organizers to post upcoming volunteering
+								shifts for their organizations. Volunteers can view these upcoming shifts, get recommended 
 							</h1>
 						</div>
 					</div>
@@ -66,11 +69,13 @@
 						<h2 class="subtitle">Personalized</h2>
 						<h1 class="title">Recommendations</h1>
 						<br />
-						<p>
-							Discover shifts based on your interests.
-						</p>
-						<img class="cover-image" src="@/assets/images/recommend.svg" alt="recommend" />
-						</div>
+						<p>Discover shifts based on your interests.</p>
+						<img
+							class="cover-image"
+							src="@/assets/images/recommend.svg"
+							alt="recommend"
+						/>
+					</div>
 				</div>
 
 				<div class="column">
@@ -79,7 +84,11 @@
 						<h1 class="title">Closest to you</h1>
 						<br />
 						<p>Find the perfect shifts in your city.</p>
-						<img class="cover-image" src="@/assets/images/world.svg" alt="world" />
+						<img
+							class="cover-image"
+							src="@/assets/images/world.svg"
+							alt="world"
+						/>
 					</div>
 				</div>
 
@@ -89,7 +98,11 @@
 						<h1 class="title">Leaderboard</h1>
 						<br />
 						<p>Your standing in your city and state.</p>
-						<img class="cover-image" src="@/assets/images/leaderboard.svg" alt="leaderboard" />
+						<img
+							class="cover-image"
+							src="@/assets/images/leaderboard.svg"
+							alt="leaderboard"
+						/>
 					</div>
 				</div>
 			</div>
@@ -100,10 +113,12 @@
 						<h2 class="subtitle">Detailed</h2>
 						<h1 class="title">Statistics</h1>
 						<br />
-						<p>
-							Receive detailed statistics on past shifts.
-						</p>
-						<img class="cover-image" src="@/assets/images/stats.svg" alt="stats" />
+						<p>Receive detailed statistics on past shifts.</p>
+						<img
+							class="cover-image"
+							src="@/assets/images/stats.svg"
+							alt="stats"
+						/>
 					</div>
 				</div>
 
@@ -113,7 +128,11 @@
 						<h1 class="title">Milestones</h1>
 						<br />
 						<p>Unlock milestones after volunteering.</p>
-							<img class="cover-image" src="@/assets/images/milestone.svg" alt="milestone" />
+						<img
+							class="cover-image"
+							src="@/assets/images/milestone.svg"
+							alt="milestone"
+						/>
 					</div>
 				</div>
 
@@ -123,7 +142,11 @@
 						<h1 class="title">Calendar</h1>
 						<br />
 						<p class>Track your upcoming shifts in a calendar.</p>
-						<img class="cover-image" src="@/assets/images/calendar.svg" alt="calendar" />
+						<img
+							class="cover-image"
+							src="@/assets/images/calendar.svg"
+							alt="calendar"
+						/>
 					</div>
 				</div>
 			</div>
@@ -238,7 +261,7 @@
 }
 
 .benefit-cards > .column {
-	padding: 2rem 1rem; 
+	padding: 2rem 1rem;
 }
 
 .benefit-cards > .column h2 {
