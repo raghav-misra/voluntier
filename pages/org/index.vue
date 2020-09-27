@@ -22,7 +22,7 @@
                     <div>
                         <nuxt-link 
                             title="Edit" 
-                            class='level-item bx bxs-edit subtitle is-4' 
+                            class='level-item bx bxs-dashboard subtitle is-4' 
                             :to="`/org/edit/${org._id}`"
                         ></nuxt-link>
                         <a
@@ -47,7 +47,7 @@
 
                 <div class="level-right">
                     <div>
-                        <nuxt-link title="Edit" class='level-item bx bxs-edit subtitle is-4' :to="`/org/edit/${testOrg._id}`">
+                        <nuxt-link title="Edit" class='level-item bx bxs-dashboard subtitle is-4' :to="`/org/edit/${testOrg._id}`">
                         </nuxt-link>
                         <a title="Delete" class='bx bxs-trash subtitle is-4' @click="deleteOrg">
                         </a>

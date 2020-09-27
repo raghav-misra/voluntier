@@ -40,6 +40,7 @@ exports.handler = async(event, context, callback) => {
                 netlifyID:"${claims.sub}" 
                 firstName:"${req.firstName}",
                 lastName:"${req.lastName}",
+                email:"${claims.email}",
                 city:"${req.city.toLowerCase()}",
                 state:"${req.state.toLowerCase()}",
                 lat:${req.lat},

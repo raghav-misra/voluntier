@@ -23,7 +23,7 @@
 							</b-field>
 
 							<b-field label="Password">
-								<b-input v-model="password" type="password" />
+								<b-input min-length="8" v-model="password" type="password" />
 							</b-field>
 
 							<b-button type="is-success" native-type="submit">
