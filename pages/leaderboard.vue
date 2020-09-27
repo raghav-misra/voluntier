@@ -82,7 +82,6 @@ export default {
 				}),
 			}
 		);
-		console.log("this be data");
 		console.log(res.data);
 		let users = res.data.data.sort(function (a, b) {
 			if (parseInt(a.hoursWorked) > parseInt(b.hoursWorked)) return -1;

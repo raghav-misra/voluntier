@@ -5,11 +5,14 @@
 				<h1 class="subtitle is-2">Discover Shifts Near You</h1>
 			</div>
 		</div>
+
 		<div class="root-container">
+			<!-- Map -->
 			<GmapMap :center="cityCoords" :zoom="mapZoom">
 				<GmapMarker
 					v-for="(shift, i) in shiftsByState"
 					:key="i"
+					@click="triggerModal(shift)"
 					:position="{ lat: shift.lat, lng: shift.lng }"
 				/>
 			</GmapMap>
@@ -38,15 +41,61 @@
 						{{ moment.unix(shift.starts).format("hh:mm") }} -
 						{{ moment.unix(shift.ends).format("hh:mm") }}
 					</h2>
-					<b-button type="is-primary">View</b-button>
-					<b-button type="is-danger">Cancel</b-button>
+					<b-button @click="triggerModal(shift)" type="is-primary"
+						>View</b-button
+					>
 				</section>
 			</div>
+
+			<!-- Modal for each shift --->
+			<b-modal
+				v-model="showShiftModal"
+				v-if="modalData"
+				aria-modal
+				aria-role="dialog"
+			>
+				<div class="hero is-info">
+					<div class="hero-body">
+						<h1 class="title">
+							{{ modalData.title }}
+						</h1>
+						<h2 class="subtitle">
+							{{ modalData.organization.name }} -
+							{{
+								moment
+									.unix(modalData.starts)
+									.format("MMMM Do YYYY")
+							}},
+							{{ moment.unix(modalData.starts).format("hh:mm") }}
+							{{ moment.unix(modalData.ends).format("hh:mm") }}
+						</h2>
+						<p>
+							{{ modalData.desc }}
+						</p>
+						<br />
+						<p>
+							Slots Remaining:
+							{{ modalData.signedUp.data.length }}/{{
+								modalData.max
+							}}
+						</p>
+						<b-button
+							@click="signUp"
+							type="is-primary"
+							v-if="
+								modalData.signedUp.data.length < modalData.max
+							"
+							>Sign Up</b-button
+						>
+					</div>
+				</div>
+			</b-modal>
 		</div>
 	</div>
 </template>
 
 <script>
+import { ToastProgrammatic as Toast } from "buefy";
 export default {
 	middleware: "auth",
 	data() {
@@ -54,6 +103,9 @@ export default {
 			viewType: "city",
 			cityCoords: { lat: 0, lng: 0 },
 			shiftsByState: [],
+
+			modalData: null,
+			showShiftModal: false,
 		};
 	},
 	computed: {
@@ -99,6 +151,47 @@ export default {
 		} catch (e) {
 			console.log(e);
 		}
+	},
+
+	methods: {
+		async triggerModal(shift) {
+			this.modalData = shift;
+			this.showShiftModal = true;
+		},
+		async signUp() {
+			console.log(this.modalData);
+			const res = await this.$axios(
+				`${process.env.BASE_URL}/signup-for-shift`,
+				{
+					method: "POST",
+					headers: {
+						authorization: `Bearer ${this.$store.state.userIdentity.token.access_token}`,
+					},
+					data: JSON.stringify({
+						id: this.modalData._id,
+					}),
+				}
+			);
+			console.log(res.data);
+			if (res.data.success) {
+				Toast.open({
+					type: "is-success",
+					message: `You signed up for ${this.modalData.title}`,
+				});
+				this.$router.push("/user");
+			} else {
+				Toast.open({
+					type: "is-danger",
+					message: `An Error Has Occurred.`,
+				});
+			}
+		},
+	},
+
+	watch: {
+		showShiftModal(mode) {
+			!mode && (this.modalData = null);
+		},
 	},
 };
 </script>

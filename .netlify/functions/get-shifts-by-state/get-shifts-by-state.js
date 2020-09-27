@@ -38,9 +38,11 @@ exports.handler = async (event, context) => {
                     city
                     state
                     max
+                    _id
                     signedUp{
                       data{
                         hoursWorked
+                        _id
                       }
                     }
                   }

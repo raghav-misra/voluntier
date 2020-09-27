@@ -3,6 +3,7 @@ exports.handler = async (event, context) => {
     console.log('Get User Called')
     // Reading the context.clientContext will give us the current user
     const endpoint = "https://graphql.fauna.com/graphql"
+    console.log(event, context);
     const claims = context.clientContext && context.clientContext.user
     console.log('user claims', claims)
 

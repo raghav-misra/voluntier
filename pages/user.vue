@@ -35,7 +35,6 @@
 						{{ moment.unix(shift.starts).format("hh:mm") }} -
 						{{ moment.unix(shift.ends).format("hh:mm") }}
 					</h2>
-					<b-button type="is-primary">View</b-button>
 					<b-button type="is-danger">Cancel</b-button>
 				</section>
 
@@ -154,7 +153,7 @@ export default {
 			return { milestones, nextMilestone };
 		},
 	},
-	data: () => {
+	data() {
 		return {
 			milestones: [
 				{
@@ -202,6 +201,10 @@ export default {
 			],
 		};
 	},
+	beforeCreate() {
+		try { this.$store.dispatch("SYNC_USER_DATA"); }
+		catch (e) { console.log("Error in syncing user: ", e); }
+	}
 };
 </script>
 

@@ -18,3 +18,19 @@ export const mutations = {
         current.userData = null;
     }
 };
+
+export const actions = {
+    async SYNC_USER_DATA({ commit, state }) {
+        if (!state.userIdentity) return;
+        console.log("User data update token: ", state.userIdentity.token.access_token);
+
+        const userData = await this.$axios(`${process.env.BASE_URL}/get-user`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${state.userIdentity.token.access_token}`
+            }
+        });
+
+        userData.data.success && commit("SET_USER_DATA", userData.data.data);
+    }
+}

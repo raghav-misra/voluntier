@@ -111,9 +111,7 @@ export default {
 					url: `${process.env.BASE_URL}/create-user/`,
 					data: this.answers,
 					headers: {
-						"Content-Type": "application/json",
 						Authorization: `Bearer ${this.$store.state.userIdentity.token.access_token}`,
-						"X-POG-DATA": JSON.stringify(this.answers),
 					},
 				});
 
