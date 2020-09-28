@@ -22,13 +22,13 @@
 			<div class="hero-body media">
 				<div class="media-main has-text-centered">
 					<iframe
-						src="https://www.youtube.com/embed/oHg5SJYRHA0"
+						width="560"
+						height="315"
+						src="https://www.youtube-nocookie.com/embed/8Eh4n5heaDc"
 						frameborder="0"
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen
-						class="media-video"
-					>
-					</iframe>
+					></iframe>
 				</div>
 
 				<div class="media-content">
